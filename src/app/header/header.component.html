@@ -1,0 +1,32 @@
+<nav class="navbar navbar-dark bg-dark mb-5">
+    <a class="navbar-brand" routerLink="/">Giphy</a>
+    <div class="navbar-expand ml-auto navbar-nav">
+        <div class="navbar-nav">
+            <div *ngIf="showSearch" class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="fa fa-close form-control-close" (click)="clearSearch()"></span>
+            </div>
+            <a *ngIf="!authService.isAuth"
+               class="nav-item nav-link"
+               routerLink="/auth"
+               routerLinkActive="active">REGISTER
+            </a>
+            <a *ngIf="authService.isAuth"
+               class="nav-item nav-link upload"
+               (click)="uploadGif()">UPLOAD NEW GIF
+            </a>
+            <a *ngIf="authService.isAuth"
+               class="nav-item nav-link"
+               routerLink="/collection"
+               routerLinkActive="active"
+               (click)="getCollection()">MY COLLECTION
+            </a>
+            <a *ngIf="authService.isAuth"
+               class="nav-item nav-link"
+               routerLink="/"
+               (click)="logout()">LOGOUT
+            </a>
+        </div>
+    </div>
+</nav>

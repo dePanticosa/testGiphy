@@ -1,0 +1,28 @@
+.has-search {
+  display: flex;
+  position: relative;
+  margin: 0 2vw 0 0;
+  align-items: center;
+
+  .form-control {
+    padding: 0 25px;
+  }
+  .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+    padding: 0 5px;
+  }
+  .form-control-close {
+    position: absolute;
+    right: 0;
+    color: #aaa;
+    padding-right: 5px;
+  }
+}
+.upload{
+  cursor: pointer;
+}

@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="box" *ngFor="let gif of gifs" (click)="openFullSize(content, gif)">
+        <div *ngIf="service.isAuth" class="icon" [ngClass]="{'like': like}">
+            <i *ngIf="!like" class="far fa-2x fa-star" (click)="addToCollection($event)"></i>
+            <i *ngIf="like" class="fas fa-2x fa-star" (click)="removeWithCollection($event)"></i>
+        </div>
+        <img [src]="gif.images.preview_gif.url">
+    </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-body">
+        <img [src]="fullSizeGif">
+        <div class="icon-close">
+            <i class="fa fa-2x fa-close" (click)="modal.close('Save click')"></i>
+        </div>
+        <div *ngIf="service.isAuth" class="icon" [ngClass]="{'like': like}">
+            <i *ngIf="!like" class="far fa-2x fa-star" (click)="addToCollection($event)"></i>
+            <i *ngIf="like" class="fas fa-2x fa-star" (click)="removeWithCollection($event)"></i>
+        </div>
+    </div>
+</ng-template>

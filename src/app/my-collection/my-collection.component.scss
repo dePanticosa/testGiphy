@@ -9,6 +9,9 @@
     .select-file {
       display: flex;
       justify-content: center;
+      .check{
+        color: green;
+      }
     }
     .send-file{
       display: flex;
@@ -30,16 +33,18 @@
       display: inline-block;
       cursor: pointer;
     }
-    .input-file:focus + label,
     .input-file + label:hover {
       background-color: coral;
     }
+  }
+  .no-gif{
+    display: flex;
+    justify-content: center;
   }
   .cards {
       display: grid;
       grid-gap: 10px;
       grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
-
   }
   
 }

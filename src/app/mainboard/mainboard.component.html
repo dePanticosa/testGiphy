@@ -1,11 +1,12 @@
-<div class="container">
-    <div class="search-results"
-         infinite-scroll
-         [infiniteScrollDistance]="scrollDistance"
-         [infiniteScrollUpDistance]="scrollUpDistance"
-         [infiniteScrollThrottle]="throttle"
-         (scrolled)="onScrollDown()">
-        <app-gif-card *ngFor="let gif of allGifs"
-                      [gif]="gif"></app-gif-card>
-    </div>
+<div class="search-results"
+     infinite-scroll
+     [infiniteScrollDistance]="scrollDistance"
+     [infiniteScrollUpDistance]="scrollUpDistance"
+     [infiniteScrollThrottle]="throttle"
+     (scrolled)="onScrollDown()">
+    <app-gif-card *ngFor="let gif of allGifs"
+                  [gif]="gif"></app-gif-card>
+</div>
+<div *ngIf="!allGifs.length" class="no-gif">
+    <p>No results found for this request.</p>
 </div>

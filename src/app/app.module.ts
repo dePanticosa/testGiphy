@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,7 +28,7 @@ import { GifCardComponent } from './gif-card/gif-card.component';
         AuthComponent,
         MyCollectionComponent,
         MainboardComponent,
-        GifCardComponent,
+        GifCardComponent
     ],
     entryComponents: [
         GifCardComponent
@@ -40,7 +41,8 @@ import { GifCardComponent } from './gif-card/gif-card.component';
         BrowserAnimationsModule,
         NgbModule,
         FormsModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        NgxSpinnerModule
     ],
     providers: [
         GiphyService,

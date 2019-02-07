@@ -1,3 +1,10 @@
+<ngx-spinner
+        bdColor="rgba(51,51,51,0.8)"
+        size="medium"
+        color="#333333"
+        type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
 <div class="container">
     <div class="wrapper">
         <div class="select-file">
@@ -9,19 +16,19 @@
                    accept='image/gif'
                    (change)="uploadGif($event.target.files)"/>
             <label for="file">Choose a file</label>
+            <i *ngIf="gif.file" class="fas fa-check-circle check"></i>
         </div>
         <div class="send-file">
             <input type="text" placeholder="Enter tag name" name="tagName" required [(ngModel)]="gif.tagName">
             <button type="button" class="send-button" (click)="sendGif()"  [disabled]="!gif.file || !gif.tagName">Send File</button>
         </div>
     </div>
+    <div *ngIf="!collectionGifs.length" class="no-gif">
+        <p>You dont have any gifs on collection</p>
+    </div>
     <div class="cards">
         <app-gif-card *ngFor="let gif of collectionGifs"
                       [gif]="gif"
                       (delete)="removeFromCollection($event)"></app-gif-card>
-        <div *ngIf="!collectionGifs.length">
-            You dont have any gifs on collection
-        </div>
     </div>
-
 </div>

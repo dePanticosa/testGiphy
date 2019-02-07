@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-dark mb-5">
-    <a class="navbar-brand" routerLink="/">Giphy</a>
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">Giphy</a>
     <div class="navbar-expand ml-auto navbar-nav">
         <div class="navbar-nav">
             <div [style.display]="showSearch ? 'flex' : 'none'" class="form-group has-search">
@@ -7,20 +7,24 @@
                 <input type="text" class="form-control" placeholder="Search" #searchInput autocomplete="off">
                 <span class="fa fa-close form-control-close" (click)="clearSearch()"></span>
             </div>
+            <a [style.display]="!showSearch ? 'flex' : 'none'"
+               class="nav-item nav-link"
+               routerLink="/">Main
+            </a>
             <a *ngIf="!authService.isAuth"
                class="nav-item nav-link"
                routerLink="/auth"
-               routerLinkActive="active">REGISTER
+               routerLinkActive="active">Login
             </a>
             <a *ngIf="authService.isAuth"
+               [style.display]="showSearch ? 'flex' : 'none'"
                class="nav-item nav-link"
-               routerLink="/collection"
-               routerLinkActive="active">MY COLLECTION
+               routerLink="/collection">Collection
             </a>
             <a *ngIf="authService.isAuth"
                class="nav-item nav-link"
                routerLink="/"
-               (click)="logout()">LOGOUT
+               (click)="logout()">Logout
             </a>
         </div>
     </div>

@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GiphyService} from '../services/giphy.service';
 import {AuthService} from '../services/auth.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
     selector: 'app-my-collection',
@@ -17,7 +18,8 @@ export class MyCollectionComponent implements OnInit, OnDestroy {
 
     private subscribes = [];
 
-    constructor(private giphyService: GiphyService,
+    constructor(private spinner: NgxSpinnerService,
+                private giphyService: GiphyService,
                 public authService: AuthService) {
     }
 
@@ -29,8 +31,11 @@ export class MyCollectionComponent implements OnInit, OnDestroy {
         let subscribe = this.giphyService.getGifsFromCollection()
             .subscribe(item => {
                 this.collectionGifs = item;
+                setTimeout(() => {
+                    this.spinner.hide();
+                }, 1000);
             });
-        this.subscribes.push(subscribe)
+        this.subscribes.push(subscribe);
     }
 
     removeFromCollection(e) {
@@ -42,19 +47,23 @@ export class MyCollectionComponent implements OnInit, OnDestroy {
     }
 
     sendGif() {
-        let subscribe =  this.giphyService.uploadGif(this.gif)
+
+        this.spinner.show();
+        let subscribe = this.giphyService.uploadGif(this.gif)
             .subscribe(data => {
                 this.giphyService.addToCollection(data['id']);
+                this.gif['file'] = null;
+                this.gif['tagName']= '';
                 this.getGifs();
             }, error => {
             });
-        this.subscribes.push(subscribe)
+        this.subscribes.push(subscribe);
     }
 
-    ngOnDestroy(){
+    ngOnDestroy() {
         this.subscribes.forEach(item => {
             item.unsubscribe();
-        })
+        });
     }
 
 }

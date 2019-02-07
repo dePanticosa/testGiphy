@@ -11,6 +11,8 @@ import {GiphyService} from '../services/giphy.service';
 })
 export class AuthComponent implements OnInit {
 
+    public error: boolean = false;
+
     public form = new FormGroup({
         username: new FormControl('', Validators.required),
         password: new FormControl('', [Validators.required, Validators.minLength(6)])
@@ -33,8 +35,9 @@ export class AuthComponent implements OnInit {
         if (this.authService.getUser(this.form.value)) {
             this.giphyService.getCollection();
             this.router.navigate(['/']);
+            this.error = false;
         } else {
-
+            this.error = true;
         }
     }
 

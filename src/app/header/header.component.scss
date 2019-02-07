@@ -26,3 +26,16 @@
 .upload{
   cursor: pointer;
 }
+
+@media (max-width: 560px) {
+  .navbar-expand, .ml-auto, .navbar-nav{
+    margin-left: 0 !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .navbar, .navbar-dark, .bg-dark, .mb-5{
+    display: flex;
+    justify-content: center;
+  }
+}

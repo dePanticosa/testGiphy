@@ -1,3 +1,10 @@
 .container {
-
+  .button-block {
+    display: flex;
+    align-items: center;
+    p {
+      margin: 0;
+      color: red;
+    }
+  }
 }

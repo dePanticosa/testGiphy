@@ -23,7 +23,6 @@ export class GiphyService {
     }
 
     getGifs(search: string = '') {
-        console.log(this.limit);
         this.currSearch = search === '' ? 'gif' : search;
         const params = new HttpParams().set('api_key', this.API_KEY)
             .append('q', this.currSearch)

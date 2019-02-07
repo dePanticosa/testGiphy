@@ -1,10 +1,9 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {AuthService} from '../services/auth.service';
-import {GiphyService} from '../services/giphy.service';
-import {NavigationEnd, Router} from '@angular/router';
-import {fromEvent, Observable} from 'rxjs';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { GiphyService } from '../services/giphy.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/internal/operators';
-import {MainboardComponent} from '../mainboard/mainboard.component';
 
 
 @Component({
@@ -41,7 +40,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         this.search$ = fromEvent<any>(this.input.nativeElement, 'keyup')
             .pipe(
                 map(event => event.target.value),
-                debounceTime(300),
+                debounceTime(1000),
                 distinctUntilChanged()
             );
         let subscribe = this.search$.subscribe(val => {
@@ -58,7 +57,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     clearSearch(){
         this.input.nativeElement.value = '';
-        this.giphyService.getGifs('')
+        this.giphyService.getGifs('');
     }
 
     logout() {

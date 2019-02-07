@@ -1,29 +1,38 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {GiphyService} from './giphy.service';
 
 @Injectable()
 export class AuthService {
 
     public isAuth: boolean = false;
 
-    constructor() {
+    constructor(public giphyService: GiphyService) {
     }
 
-    register(userData: Object) {
-        this.isAuth= true;
+    setUser(userData) {
+        this.isAuth = true;
+        this.giphyService.collection = [];
         localStorage.setItem('user', JSON.stringify(userData));
         localStorage.setItem('isAuth', 'true');
+        localStorage.setItem('collection', JSON.stringify(this.giphyService.collection));
     }
 
-    login(userData: Object) {
-        localStorage.setItem('user', JSON.stringify(userData));
+    getUser(userData) {
+        let user;
+        if (!localStorage.user) {
+            return false;
+        } else {
+            user = JSON.parse(localStorage.getItem('user'));
+            if (user.username === userData.username && user.password === userData.password) {
+                this.isAuth = true;
+                localStorage.setItem('isAuth', 'true');
+                return true;
+            } else if (user.username !== userData.username) {
+                return false;
+            } else if (user.password !== userData.password) {
+                return false;
+            }
+        }
     }
-
-
-    logout() {
-        this.isAuth = false;
-        localStorage.setItem('isAuth', 'false');
-    }
-
 
 }

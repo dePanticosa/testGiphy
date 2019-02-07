@@ -2,13 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
-
-
-export interface User {
-    username: string;
-    password: string;
-    collection: string[];
-}
+import {GiphyService} from '../services/giphy.service';
 
 @Component({
     selector: 'app-auth',
@@ -23,39 +17,24 @@ export class AuthComponent implements OnInit {
     });
 
     constructor(public router: Router,
-                public authService: AuthService) {
+                public authService: AuthService,
+                public giphyService: GiphyService) {
     }
 
     ngOnInit() {
-
     }
 
     register() {
-        let userData: User = {
-           username: this.form.value.username,
-           password: this.form.value.password,
-           collection: []
-        };
-        this.authService.register(userData);
+        this.authService.setUser(this.form.value);
         this.router.navigate(['/']);
     }
 
     login() {
-        let user;
-        if(!localStorage.user){
-            //message
-            console.log('sho?')
+        if (this.authService.getUser(this.form.value)) {
+            this.giphyService.getCollection();
+            this.router.navigate(['/']);
         } else {
-            user = JSON.parse(localStorage.getItem('user'));
-            if (user.username === this.form.value.username && user.password === this.form.value.password) {
-                this.authService.isAuth= true;
-                localStorage.setItem('isAuth', 'true');
-                this.router.navigate(['/']);
-            } else if (user.username !== this.form.value.username) {
-                //message
-            } else if (user.password !== this.form.value.password) {
-                //message
-            }
+
         }
     }
 

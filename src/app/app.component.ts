@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
             localStorage.setItem('isAuth', 'false');
         } else if (JSON.parse(localStorage.isAuth)) {
             this.authService.isAuth = JSON.parse(localStorage.isAuth);
-            this.giphyService.getCollection()
+            this.giphyService.getCollection();
         }
     }
 }

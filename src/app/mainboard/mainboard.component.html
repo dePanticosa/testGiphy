@@ -1,3 +1,11 @@
 <div class="container">
-    <app-gif-card [gifs]="allGifs$ | async"></app-gif-card>
+    <div class="search-results"
+         infinite-scroll
+         [infiniteScrollDistance]="scrollDistance"
+         [infiniteScrollUpDistance]="scrollUpDistance"
+         [infiniteScrollThrottle]="throttle"
+         (scrolled)="onScrollDown()">
+        <app-gif-card *ngFor="let gif of allGifs"
+                      [gif]="gif"></app-gif-card>
+    </div>
 </div>

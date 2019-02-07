@@ -1,0 +1,45 @@
+.box {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  padding: 20px 20px;
+  .icon {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: gold;
+  }
+  .like {
+    display: block !important;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.box:hover .icon {
+  display: block;
+  cursor: pointer;
+}
+
+.modal-body {
+  position: relative;
+  img {
+    width: 100%;
+  }
+  .icon-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: gold;
+    cursor: pointer;
+  }
+  .icon {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    color: gold;
+    cursor: pointer;
+  }
+}

@@ -1,2 +1,27 @@
 <div class="container">
+    <div class="wrapper">
+        <div class="select-file">
+            <input type="file"
+                   name="file"
+                   id="file"
+                   class="input-file"
+                   required
+                   accept='image/gif'
+                   (change)="uploadGif($event.target.files)"/>
+            <label for="file">Choose a file</label>
+        </div>
+        <div class="send-file">
+            <input type="text" placeholder="Enter tag name" name="tagName" required [(ngModel)]="gif.tagName">
+            <button type="button" class="send-button" (click)="sendGif()"  [disabled]="!gif.file || !gif.tagName">Send File</button>
+        </div>
+    </div>
+    <div class="cards">
+        <app-gif-card *ngFor="let gif of collectionGifs"
+                      [gif]="gif"
+                      (delete)="removeFromCollection($event)"></app-gif-card>
+        <div *ngIf="!collectionGifs.length">
+            You dont have any gifs on collection
+        </div>
+    </div>
+
 </div>

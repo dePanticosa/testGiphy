@@ -1,39 +1,46 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppRoutingModule } from './app-routing.module';
-import { MainboardModule } from './mainboard/mainboard.module';
 
+import { GiphyService } from './services/giphy.service';
+import { AuthService } from './services/auth.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthComponent } from './auth/auth.component';
-
-import { GiphyService } from './services/giphy.service';
-import { AuthService } from './services/auth.service';
 import { MyCollectionComponent } from './my-collection/my-collection.component';
+import { MainboardComponent } from './mainboard/mainboard.component';
+import { GifCardComponent } from './gif-card/gif-card.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
         AuthComponent,
-        MyCollectionComponent
+        MyCollectionComponent,
+        MainboardComponent,
+        GifCardComponent,
+    ],
+    entryComponents: [
+        GifCardComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        MainboardModule,
         HttpClientModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        NgbModule
+        NgbModule,
+        FormsModule,
+        InfiniteScrollModule
     ],
     providers: [
         GiphyService,

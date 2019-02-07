@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     public search$: Observable<any>;
     private subscribes = [];
 
-
     @ViewChild('searchInput') input: ElementRef;
 
     constructor(public authService: AuthService,

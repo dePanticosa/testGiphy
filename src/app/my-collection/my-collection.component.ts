@@ -11,7 +11,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class MyCollectionComponent implements OnInit, OnDestroy {
 
     collectionGifs: Array<Object> = [];
-    public gif: Object = {
+    public gif = {
         file: File = null,
         tagName: ''
     };

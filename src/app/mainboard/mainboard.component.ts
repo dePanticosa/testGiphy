@@ -30,7 +30,7 @@ export class MainboardComponent implements OnInit, OnDestroy {
         this.subscribes.push(subscribe)
     }
 
-    onScrollDown (ev) {
+    onScrollDown () {
         this.giphyService.limit += 25;
         this.getGifs(this.giphyService.currSearch);
     }
